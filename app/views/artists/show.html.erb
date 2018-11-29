@@ -1,0 +1,29 @@
+<h1><%=@artist.name %></h1>
+<%= render 'follow_UI', artist: @artist %>
+
+
+
+<div>
+<%if user_editable? %>
+    <%= link_to fa_icon('edit 2x'), edit_artist_path(@artist) %> 
+    <%= link_to fa_icon('trash 2x'), artist_path(@artist), method: :delete, data:{confirm:'삭제하시겠습니까?'} %>
+<% end%>
+</div>
+<hr />
+<%#= @artist.nationality %>
+<%= image_tag @artist.image.url, class:'image-center' if @artist.image? %>
+<%#= image_tag @artist.cover.thumb.url if @song.cover? %>
+
+
+<ul>
+    <% @artist.songs.each do |song|%>
+    <li>
+        <%= image_tag song.cover.url, style:"width:50px" if song.cover?%>    
+        <%= link_to song.title, song_path(song) %>
+    </li>
+    <% end %>
+</ul>
+
+<%= render 'comments/form', commentable: @artist %>
+<hr />
+<%= render 'comments/index', commentable: @artist %>

@@ -1,0 +1,34 @@
+<h1>Jukebox</h1>
+<%= link_to 'join artist&song',new_participate_path if user_editable? %>
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+        <h2>Artists</h2>
+        
+            <%=link_to 'new artist', new_artist_path if user_editable?%>
+            <ul>
+            <% @artists.each do |artist|%>
+            <li class='element-box'>
+                <%= image_tag artist.image.thumb.url if artist.image? %>
+                <%= link_to artist.name, artist_path(artist) %>
+            </li>
+            <% end %>
+        </ul>
+    </div>
+    
+    
+    <div class="col-md-6 col-sm-12">
+        <h2>Songs</h2>
+            <%=link_to 'new song', new_song_path if user_editable? %>
+
+            <ul>
+            <% @songs.each do |song| %>
+            <li class='element-box'>
+                
+                <%= image_tag song.cover.thumb.url if song.cover? %>
+                <%= link_to song.title, song_path(song) %>
+            </li>
+            <% end %>
+    </div>       
+            </ul>
+  </div>
+

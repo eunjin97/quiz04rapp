@@ -1,0 +1,11 @@
+<h1><%=@article.title%></h1>
+<%= render 'userUI'%>
+<%= render 'like'%>
+<hr />
+<p> <%= @article.content.html_safe %></p>
+
+
+
+<%= render 'comments/form', commentable: @article %>
+<hr />
+<%= render 'comments/index', commentable: @article %>
